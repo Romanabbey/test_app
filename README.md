@@ -13,9 +13,9 @@
 
 ## 무료 배포: GitHub Pages
 1. 저장소의 **Settings → Pages** 로 이동합니다.
-2. **Build and deployment → Source** 를 `Deploy from a branch` 로 두고, 브랜치는 `main`, 폴더는 `/ (root)` 를 선택합니다.
-3. 저장소가 **비공개**라면 GitHub 무료 계정에서는 Pages를 쓸 수 없으니, 공개 저장소로 바꾸거나 Pages 가능한 플랜을 써야 합니다.
-4. 몇 분 뒤 `https://<사용자명>.github.io/<저장소명>/` 주소에서 접속할 수 있습니다.
+2. **Build and deployment → Source** 를 `Deploy from a branch` 로 두고, 브랜치는 `claude/cheapest-hotel-search-pwa-yw8q3u`, 폴더는 `/ (root)` 를 선택합니다. (`main` 에 앱 코드가 합쳐진 뒤에는 `main` 으로 바꿔도 됩니다.)
+3. 저장소가 **공개**여야 무료 계정에서 Pages를 쓸 수 있습니다. 비공개라면 공개로 바꾸거나 Pages 가능한 플랜을 써야 합니다.
+4. 몇 분 뒤 `https://romanabbey.github.io/test_app/` 주소에서 접속할 수 있습니다.
 
 Pages 주소는 하위 경로에서 서비스되므로, 앱은 상대 경로(`./`)로만 파일을 불러옵니다. 서비스 워커도 이 설정을 따릅니다.
 
