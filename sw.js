@@ -1,5 +1,5 @@
 // 서비스 워커: 앱 셸은 미리 캐시하고(오프라인 실행), 그 외 요청은 네트워크 우선.
-const CACHE = 'cheap-hotel-v2';
+const CACHE = 'cheap-hotel-v3';
 const SHELL = [
   './',
   './index.html',

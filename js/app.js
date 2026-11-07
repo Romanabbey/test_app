@@ -384,6 +384,7 @@ document.querySelectorAll('.tab').forEach((t) => t.addEventListener('click', () 
 window.addEventListener('online', updateOnline);
 window.addEventListener('offline', updateOnline);
 
+$('#demoBanner').hidden = !usingDemo;
 $('#providerNote').textContent = usingDemo
   ? '데모 모드 — 호텔과 가격은 가상 데이터이며, 각 사이트 링크는 실제 사이트에서 같은 조건으로 검색합니다. 실제 가격을 연동하려면 js/config.js 의 API_ENDPOINT 를 설정하세요.'
   : '가격은 예약 사이트 사정에 따라 실시간으로 달라질 수 있습니다.';

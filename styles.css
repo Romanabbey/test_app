@@ -341,4 +341,13 @@ main { max-width: 880px; margin: 0 auto; padding: 16px; }
   max-width: calc(100vw - 32px);
 }
 .detail-foot a { color: var(--accent); }
+.demo-banner {
+  background: var(--deal-soft);
+  color: var(--deal);
+  font-size: .85rem;
+  font-weight: 600;
+  text-align: center;
+  padding: 8px 16px;
+}
+.demo-banner[hidden] { display: none; }
 .toast[hidden] { display: none; }
