@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>최저가 호텔</title>
+  <meta name="description" content="여러 예약 사이트의 호텔 가격을 비교해 최저가를 찾아주는 앱" />
+  <meta name="theme-color" content="#0f766e" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="icons/icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="최저가 호텔" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div class="brand">
+      <img src="icons/icon.svg" alt="" width="28" height="28" />
+      <span>최저가 호텔</span>
+    </div>
+    <div class="header-actions">
+      <button id="installBtn" class="chip" hidden>앱 설치</button>
+      <span id="offlineBadge" class="badge-offline" hidden>오프라인</span>
+    </div>
+  </header>
+
+  <main>
+    <section class="search-card" aria-label="호텔 검색">
+      <form id="searchForm" autocomplete="off">
+        <label class="field field-dest">
+          <span>목적지</span>
+          <input id="destination" name="destination" list="cityList" placeholder="도시 이름 (예: 서울, 도쿄)" required />
+          <datalist id="cityList"></datalist>
+        </label>
+        <div class="row">
+          <label class="field">
+            <span>체크인</span>
+            <input id="checkIn" name="checkIn" type="date" required />
+          </label>
+          <label class="field">
+            <span>체크아웃</span>
+            <input id="checkOut" name="checkOut" type="date" required />
+          </label>
+        </div>
+        <div class="row">
+          <label class="field">
+            <span>성인</span>
+            <select id="adults" name="adults">
+              <option>1</option><option selected>2</option><option>3</option><option>4</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>객실</span>
+            <select id="rooms" name="rooms">
+              <option selected>1</option><option>2</option><option>3</option>
+            </select>
+          </label>
+        </div>
+        <button type="submit" class="btn-primary">최저가 검색</button>
+      </form>
+      <div id="recent" class="recent" hidden>
+        <span class="recent-label">최근 검색</span>
+        <div id="recentList" class="recent-list"></div>
+      </div>
+    </section>
+
+    <nav class="tabs" role="tablist">
+      <button class="tab active" data-tab="results" role="tab" aria-selected="true">검색 결과</button>
+      <button class="tab" data-tab="favorites" role="tab" aria-selected="false">찜한 호텔 <span id="favCount" class="count"></span></button>
+    </nav>
+
+    <section id="resultsPanel" class="panel">
+      <div id="toolbar" class="toolbar" hidden>
+        <div id="summary" class="summary"></div>
+        <div class="filters">
+          <select id="sortBy" aria-label="정렬">
+            <option value="price">가격 낮은 순</option>
+            <option value="rating">평점 높은 순</option>
+            <option value="stars">성급 높은 순</option>
+            <option value="savings">할인폭 큰 순</option>
+          </select>
+          <select id="starFilter" aria-label="성급">
+            <option value="0">전체 성급</option>
+            <option value="3">3성급 이상</option>
+            <option value="4">4성급 이상</option>
+            <option value="5">5성급</option>
+          </select>
+          <label class="price-range">
+            <span>최대 <output id="maxPriceOut"></output></span>
+            <input id="maxPrice" type="range" min="0" max="100" step="1" value="100" />
+          </label>
+          <label class="check">
+            <input id="freeCancel" type="checkbox" /> 무료 취소
+          </label>
+        </div>
+      </div>
+      <div id="results" class="results">
+        <div class="empty">
+          <p class="empty-title">어디로 떠나시나요?</p>
+          <p>목적지와 날짜를 입력하면 여러 예약 사이트의 가격을 비교해 최저가 순으로 보여드려요.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="favoritesPanel" class="panel" hidden>
+      <div id="favorites" class="results"></div>
+    </section>
+  </main>
+
+  <dialog id="detail" class="detail">
+    <div id="detailBody"></div>
+  </dialog>
+
+  <footer class="app-footer">
+    <p id="providerNote"></p>
+  </footer>
+
+  <template id="hotelCardTpl">
+    <article class="hotel">
+      <div class="hotel-thumb"><span class="thumb-initial"></span></div>
+      <div class="hotel-info">
+        <div class="hotel-top">
+          <h3 class="hotel-name"></h3>
+          <button class="fav" aria-label="찜하기">♡</button>
+        </div>
+        <div class="hotel-meta"></div>
+        <div class="hotel-tags"></div>
+      </div>
+      <div class="hotel-price">
+        <span class="lowest-label">최저가</span>
+        <span class="lowest-site"></span>
+        <strong class="lowest-price"></strong>
+        <span class="per-night"></span>
+        <span class="savings"></span>
+        <button class="btn-compare">가격 비교</button>
+      </div>
+    </article>
+  </template>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
